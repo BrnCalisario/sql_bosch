@@ -1,0 +1,34 @@
+CREATE DATABASE LIVRARIA
+USE LIVRARIA
+
+CREATE TABLE EDITORA(
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	NOME VARCHAR(50) NOT NULL,
+)
+
+CREATE TABLE LIVRO(
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	ID_EDITORA INT FOREIGN KEY REFERENCES EDITORA(ID),
+	NOME VARCHAR(50) NOT NULL,
+)
+
+INSERT EDITORA (NOME) VALUES
+('Cia das Letras'),('Divino'),('Casa do Saber')
+
+INSERT LIVRO (ID_EDITORA, NOME) VALUES 
+(1, 'Pequeno Príncipe'), (1, 'Ziraldo Thoughts'),
+(1, 'Cia das Letras: Como tudo começou'), (1, 'Toma Toma'),
+(2, 'Livro Divino'), (2, 'Livro Divino PT 2'), (2, 'Livro Divino PT 3'),
+(3, 'Casa do Saber: Como tudo terminou'), (3,  'Rambo'), (3, 'Rambo 2')
+
+
+SELECT * FROM EDITORA
+SELECT * FROM LIVRO
+
+
+SELECT L.NOME, (SELECT E.NOME FROM EDITORA E WHERE E.NOME = 'Cia das Letras' ) as Editora
+FROM LIVRO L
+
+
+SELECT L.NOME FROM LIVRO L WHERE
+L.ID_EDITORA IN (SELECT E.ID FROM EDITORA E WHERE E.NOME = 'Cia das Letras')
