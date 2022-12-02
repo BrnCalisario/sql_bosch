@@ -26,7 +26,7 @@ VALUES
   ('Kenneth Mclaughlin','93342733555','Águas Lindas de Goiás'),
   ('Andrew Brennan','42629814812','Anápolis');
 
-SELECT * FROM PROFESSOR
+SELECT * FROM [PROFESSOR]
 
 -- INSERT ALUNO
 
@@ -48,9 +48,22 @@ SELECT * FROM ALUNO
 
 -- INSERT TURMA
 
-INSERT INTO [TURMA] (ID_CURSO)
+INSERT INTO [TURMA] (ID_CURSO, ID_PROF)
 VALUES 
-    (1),(2),(3),
-    (4),(5),(6)
+    (1, 1),(2, 2),(3, 3),
+    (4, 4),(5, 5),(6, 5)
 
 SELECT * from TURMA
+
+INSERT INSCRICAO (ID_TURMA, ID_ALUNO)
+VALUES
+    (1, 1),(1, 2),(1, 3),
+    (1, 4),(1, 5),(2, 6),
+    (2, 7),(2, 8),(2, 9),
+    (2, 10)
+
+UPDATE TURMA
+SET DT_TERMINO = '2023-12-02'
+WHERE ID = 3
+
+
